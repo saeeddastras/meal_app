@@ -14,7 +14,7 @@ AppBar getAppBarWidget(String title, List<Widget>? actions,
     leading: SizedBox(
       width: 20,
       height: 20,
-      child: GestureDetector(
+      child: onBackPressed==null ?GestureDetector(
         child: Icon(
           Icons.arrow_back_ios,
           color: AppTheme().iconColor,
@@ -27,7 +27,7 @@ AppBar getAppBarWidget(String title, List<Widget>? actions,
             Navigator.pop(Get.context!);
           }
         },
-      ),
+      ):Container(),
     ),
     elevation: 0.0,
     centerTitle: true,
