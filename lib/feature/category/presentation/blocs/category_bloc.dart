@@ -8,22 +8,49 @@ import 'package:meal_app/feature/category/domain/use_cases/category_use_case.dar
 import 'package:meta/meta.dart';
 
 part 'category_event.dart';
+
 part 'category_state.dart';
 
 @injectable
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
-  final CategoryUseCase _useCase ;
-  CategoryBloc(this._useCase) : super(CategoryState(requestStatus: RequestStatus(responseStatus: ResponseStatus.initial))) {
-    on<OnGetCategoryEvent>((event, emit) {
+  final CategoryUseCase _useCase;
 
+  CategoryBloc(this._useCase)
+      : super(CategoryState(requestStatus: RequestStatus(responseStatus: ResponseStatus.initial))) {
+    on<OnGetCategoryEvent>((event, emit) async{
+      await _onGetCategory(event, emit) ;
     });
   }
 
-  Future<void> _onGetCategory(OnGetCategoryEvent event , Emitter<CategoryState> emit)async {
-    emit(state.copyWith(requestStatus: RequestStatus(responseStatus: ResponseStatus.loading,),),);
-
-
-
-
+  Future<void> _onGetCategory(OnGetCategoryEvent event, Emitter<CategoryState> emit) async {
+    emit(
+      state.copyWith(
+        requestStatus: RequestStatus(
+          responseStatus: ResponseStatus.loading,
+        ),
+      ),
+    );
+    await _useCase.getCategory((data) {
+      if((data.categories??[]).isNotEmpty) {
+        emit(
+          state.copyWith(
+            requestStatus: RequestStatus(responseStatus: ResponseStatus.success),
+            categoryModel: data,
+          ),
+        );
+      }else {
+        emit(
+          state.copyWith(
+            requestStatus: RequestStatus(responseStatus: ResponseStatus.empty),
+          ),
+        );
+      }
+    }, (code, message) {
+      emit(
+        state.copyWith(
+          requestStatus: RequestStatus(responseStatus: ResponseStatus.error),
+        ),
+      );
+    });
   }
 }

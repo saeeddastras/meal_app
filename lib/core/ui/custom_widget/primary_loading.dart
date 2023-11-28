@@ -8,14 +8,10 @@ class PrimaryLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40.0.dp,
-      decoration: BoxDecoration(color: AppTheme().primaryColor, borderRadius: BorderRadius.circular(10.0)),
-      child: Center(
-        child: Lottie.asset(
-          'assets/lottie/loading_inline.json',
-          height: 24.0.dp,
-        ),
+    return Center(
+      child: Lottie.asset(
+        'assets/lottie/loading_inline.json',
+        height: 200.0.dp,
       ),
     );
   }

@@ -9,7 +9,7 @@ part of 'category_entity.dart';
 CategoriesModel _$CategoriesModelFromJson(Map<String, dynamic> json) =>
     CategoriesModel(
       categories: (json['categories'] as List<dynamic>?)
-          ?.map((e) => Categories.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -18,14 +18,15 @@ Map<String, dynamic> _$CategoriesModelToJson(CategoriesModel instance) =>
       'categories': instance.categories,
     };
 
-Categories _$CategoriesFromJson(Map<String, dynamic> json) => Categories(
+CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
+    CategoryModel(
       idCategory: json['idCategory'] as String?,
       strCategory: json['strCategory'] as String?,
       strCategoryThumb: json['strCategoryThumb'] as String?,
       strCategoryDescription: json['strCategoryDescription'] as String?,
     );
 
-Map<String, dynamic> _$CategoriesToJson(Categories instance) =>
+Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
     <String, dynamic>{
       'idCategory': instance.idCategory,
       'strCategory': instance.strCategory,

@@ -4,7 +4,7 @@ part 'category_entity.g.dart';
 
 @JsonSerializable()
 class CategoriesModel {
-  List<Categories>? categories;
+  List<CategoryModel>? categories;
   CategoriesModel({this.categories});
 
   factory CategoriesModel.fromJson(Map<String, dynamic> json) => _$CategoriesModelFromJson(json);
@@ -14,19 +14,19 @@ class CategoriesModel {
 }
 
 @JsonSerializable()
-class Categories {
+class CategoryModel {
   String? idCategory;
   String? strCategory;
   String? strCategoryThumb;
   String? strCategoryDescription;
 
-  Categories(
+  CategoryModel(
       {this.idCategory,
         this.strCategory,
         this.strCategoryThumb,
         this.strCategoryDescription});
 
-  factory Categories.fromJson(Map<String, dynamic> json) => _$CategoriesFromJson(json);
+  factory CategoryModel.fromJson(Map<String, dynamic> json) => _$CategoryModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CategoriesToJson(this);
+  Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
 }

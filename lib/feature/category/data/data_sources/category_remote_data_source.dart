@@ -9,5 +9,5 @@ class CategoryRemoteDataSource{
 
   CategoryRemoteDataSource(this.api);
 
-  Future<CategoriesModel> getCategory() => api.getCategory();
+  Future<CategoriesModel?>? getCategory() => api.getCategory();
 }
