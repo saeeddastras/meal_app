@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'category_api.dart';
+part of 'meal_list_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'category_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _CategoryApi implements CategoryApi {
-  _CategoryApi(
+class _MailListApi implements MailListApi {
+  _MailListApi(
     this._dio, {
     this.baseUrl,
   });
@@ -19,20 +19,20 @@ class _CategoryApi implements CategoryApi {
   String? baseUrl;
 
   @override
-  Future<CategoriesModel?>? getCategory() async {
+  Future<MealResponse?>? getMealList(String categoryName) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'c': categoryName};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>?>(_setStreamType<CategoriesModel>(Options(
+        .fetch<Map<String, dynamic>?>(_setStreamType<MealResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/categories.php',
+              '/filter.php',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -42,7 +42,7 @@ class _CategoryApi implements CategoryApi {
               baseUrl,
             ))));
     final value =
-        _result.data == null ? null : CategoriesModel.fromJson(_result.data!);
+        _result.data == null ? null : MealResponse.fromJson(_result.data!);
     return value;
   }
 

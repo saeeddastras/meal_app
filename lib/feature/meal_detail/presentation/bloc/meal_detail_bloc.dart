@@ -2,32 +2,34 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meal_app/core/data/model/request_status.dart';
+import 'package:meal_app/feature/meal_detail/data/models/meal_detail_entity.dart';
+import 'package:meal_app/feature/meal_detail/domain/use_cases/meal_detail_use_case.dart';
 import 'package:meal_app/feature/meal_list/data/models/meal_list_entity.dart';
 import 'package:meal_app/feature/meal_list/domain/use_cases/meal_list_use_case.dart';
 import 'package:meta/meta.dart';
 
-part 'meal_list_event.dart';
+part 'meal_detail_event.dart';
 
-part 'meal_list_state.dart';
+part 'meal_detail_state.dart';
 
 @injectable
-class MealListBloc extends Bloc<MealListEvent, MealListState> {
-  final MealListUseCase _useCase;
+class MealDetailBloc extends Bloc<MealDetailEvent, MealDetailState> {
+  final MealDetailUseCase _useCase;
 
-  MealListBloc(this._useCase)
+  MealDetailBloc(this._useCase)
       : super(
-          MealListState(
+          MealDetailState(
             requestStatus: RequestStatus(
               responseStatus: ResponseStatus.initial,
             ),
           ),
         ) {
-    on<OnGetMealsEvent>((event, emit) async {
+    on<OnGetMealDetailEvent>((event, emit) async {
       await _onGetMeals(event, emit);
     });
   }
 
-  Future<void> _onGetMeals(OnGetMealsEvent event, Emitter<MealListState> emit) async {
+  Future<void> _onGetMeals(OnGetMealDetailEvent event, Emitter<MealDetailState> emit) async {
     emit(
       state.copyWith(
         requestStatus: RequestStatus(
@@ -36,14 +38,14 @@ class MealListBloc extends Bloc<MealListEvent, MealListState> {
       ),
     );
 
-    await _useCase.getMealList(event.categoryName, (response) {
-      if ((response.meals ?? []).isNotEmpty) {
+    await _useCase.getMealDetail(event.mealId, (response) {
+      if ((response.mealsDetail ?? []).isNotEmpty) {
         emit(
           state.copyWith(
             requestStatus: RequestStatus(
               responseStatus: ResponseStatus.success,
             ),
-            meals: response.meals
+            mealDetail: response.mealsDetail![0]
           ),
         );
       }else{

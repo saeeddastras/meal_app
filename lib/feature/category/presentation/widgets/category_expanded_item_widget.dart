@@ -7,6 +7,8 @@ import 'package:meal_app/core/ui/custom_widget/horizontal_space.dart';
 import 'package:meal_app/core/values/theme.dart';
 import 'package:meal_app/feature/category/data/models/category_entity.dart';
 import 'package:meal_app/feature/meal_list/presentation/bloc/meal_list_bloc.dart';
+import 'package:meal_app/feature/meal_detail/presentation/bloc/meal_detail_bloc.dart';
+import 'package:meal_app/feature/meal_detail/presentation/pages/meal_detail_screen.dart';
 import 'package:meal_app/feature/meal_list/presentation/pages/meal_list_screen.dart';
 import 'package:readmore/readmore.dart';
 

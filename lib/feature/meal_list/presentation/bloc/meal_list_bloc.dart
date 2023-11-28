@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meal_app/core/data/model/request_status.dart';
+import 'package:meal_app/feature/meal_detail/domain/use_cases/meal_detail_use_case.dart';
 import 'package:meal_app/feature/meal_list/data/models/meal_list_entity.dart';
 import 'package:meal_app/feature/meal_list/domain/use_cases/meal_list_use_case.dart';
 import 'package:meta/meta.dart';

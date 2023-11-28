@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'category_api.dart';
+part of 'meal_detail_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'category_api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _CategoryApi implements CategoryApi {
-  _CategoryApi(
+class _MailDetailApi implements MailDetailApi {
+  _MailDetailApi(
     this._dio, {
     this.baseUrl,
   });
@@ -19,20 +19,20 @@ class _CategoryApi implements CategoryApi {
   String? baseUrl;
 
   @override
-  Future<CategoriesModel?>? getCategory() async {
+  Future<MealDetailResponse?>? getMealDetail(int mealId) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'i': mealId};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>?>(_setStreamType<CategoriesModel>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>?>(
+        _setStreamType<MealDetailResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/categories.php',
+              '/lookup.php',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -41,8 +41,9 @@ class _CategoryApi implements CategoryApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value =
-        _result.data == null ? null : CategoriesModel.fromJson(_result.data!);
+    final value = _result.data == null
+        ? null
+        : MealDetailResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -18,7 +18,7 @@ class MealListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme().backgroundColor,
-      appBar: getAppBarWidget(Strings.mealsList, []),
+      appBar: getAppBarWidget(Strings.mealDetail, []),
       body: BlocBuilder<MealListBloc, MealListState>(
         buildWhen: (previous, current) => previous.requestStatus.responseStatus!= current.requestStatus.responseStatus,
         builder: (context, state) {
@@ -29,7 +29,7 @@ class MealListScreen extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 150,
                   crossAxisSpacing: 12.0.dp,
-                mainAxisExtent: 190
+                  mainAxisExtent: 190
 
               ),
               padding: EdgeInsets.all(12.0.dp),
