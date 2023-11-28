@@ -23,7 +23,7 @@ class CategoryScreen extends StatelessWidget {
         ..add(OnGetCategoryEvent()),
       child: Scaffold(
         backgroundColor: AppTheme().backgroundColor,
-        appBar: getAppBarWidget(Strings.mealCategory, [],onBackPressed: null),
+        appBar: getAppBarWidget(Strings.mealCategory, [],showBackButton: false),
         body: BlocBuilder<CategoryBloc, CategoryState>(
           buildWhen: (previous, current) => previous.requestStatus.responseStatus!= current.requestStatus.responseStatus,
           builder: (context, state) {

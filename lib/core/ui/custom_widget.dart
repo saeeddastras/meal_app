@@ -7,14 +7,14 @@ import 'package:meal_app/core/ui/custom_widget/vertical_space.dart';
 import 'package:meal_app/core/values/theme.dart';
 
 AppBar getAppBarWidget(String title, List<Widget>? actions,
-    {PreferredSizeWidget? tabBar, Future<bool> Function()? onBackPressed}) {
+    {PreferredSizeWidget? tabBar, Future<bool> Function()? onBackPressed , bool ? showBackButton}) {
   return AppBar(
     backgroundColor: Colors.transparent,
     title: Text(title, style: AppTheme().textPrimary4Bold),
     leading: SizedBox(
       width: 20,
       height: 20,
-      child: onBackPressed==null ?GestureDetector(
+      child: showBackButton??true ?GestureDetector(
         child: Icon(
           Icons.arrow_back_ios,
           color: AppTheme().iconColor,
